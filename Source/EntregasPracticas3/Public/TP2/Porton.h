@@ -3,36 +3,34 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "InteractInterface.h"
 #include "GameFramework/Actor.h"
-#include "Altar.generated.h"
+#include "Porton.generated.h"
 
-class USphereComponent;
 class UStaticMeshComponent;
-class UActivablesComponent;
-
 UCLASS()
-class ENTREGASPRACTICAS3_API AAltar : public AActor, public IInteractInterface
+class ENTREGASPRACTICAS3_API APorton : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
-	AAltar();
+	APorton();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UStaticMeshComponent> StaticMesh;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<USphereComponent> Sphere;
-	virtual void Interact_Implementation(AActor* Actor) override;
+	int AltaresTotales;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UActivablesComponent> ActivablesComponent;
+	int AltaresActivados;
+	
+	UFUNCTION(BlueprintCallable)
+	void OnAltarActivado();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
 };
